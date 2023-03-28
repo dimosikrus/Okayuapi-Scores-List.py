@@ -29,6 +29,11 @@ player_name = a['player']['name']
 player = f'\nScores by: {player_name} ({player_id})'
 print(player)
 
+global abo
+global message
+abo = ' '
+message = ' '
+
 def minfo(number):
     scores_score = a['scores'][number]['score']
     scores_pp = a['scores'][number]['pp']
@@ -58,11 +63,15 @@ def minfo(number):
     scores = f'__Player score__\n{scores_score} PP: {scores_pp}\nGrade: {scores_grade}\n{scores_acc}% {scores_max_combo}/{scores_beatmap_max_combo}\n300\'s: {scores_n300} 100\'s: {scores_n100}\n50\'s: {scores_n50} X\'s: {scores_nmiss}\nMods: {scores_mods}'
     beatmap = f'__BeatMap__\n{scores_beatmap_artist} - {scores_beatmap_title} ({scores_beatmap_version}) [{scores_beatmap_creator}]\n{scores_beatmap_diff_info}'
     
-    message = f'\n{beatmap}\n{scores}'
-    print(message)
+    global message
+    message = f'\n{beatmap}\n{scores}\n'
+    abo = message
 
 global count1
 count1 = 0
 while count1 < limit:
     minfo(count1)
+    abo += message
     count1 = count1 + 1
+
+print(abo)
